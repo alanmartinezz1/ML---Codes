@@ -68,7 +68,7 @@ def Juego():
                             resp = input("¿Suele vivir cerca de humanos? ")
                             if resp == "si":
                                 
-                                print("Tu animal es un cangrejo")
+                                print("Tu animal es una paloma")
 
                             else:
                                 resp = input("¿Tiene colores llamativos? ")
