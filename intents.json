@@ -1,30 +1,151 @@
 {
   "intents": [
     {
-      "tag": "saludo",
+      "tag": "emergencia_medica",
       "patterns": [
-        "hola",
-        "buenos d[ií]as",
-        "buenas tardes",
-        "buenas noches",
-        "saludos",
-        "qu[eé] tal",
-        "c[oó]mo est[aá]s",
-        "hey",
-        "holi",
-        "qu[eé] onda"
+        "emergencia m[eé]dica",
+        "necesito un doctor",
+        "me siento mal",
+        "accidente",
+        "lastimado",
+        "herido",
+        "emergencia",
+        "necesito un m[eé]dico",
+        "ambulancia",
+        "primeros auxilios",
+        "doctor",
+        "urgencia m[eé]dica",
+        "enfermo", "malestar",
+        "dolor fuerte",
+        "dolor intenso",
+        "ataque",
+        "convulsi[oó]n",
+        "desmayo",
+        "pérdida de conciencia",
+        "sangrado",
+        "hemorragia",
+        "fractura",
+        "quemadura",
+        "intoxicaci[oó]n",
+        "alergia severa",
+        "reacci[oó]n al[ée]rgica",
+        "shock",
+        "paro card[ií]aco",
+        "ataque al coraz[oó]n",
+        "derrame cerebral",
+        "apendicitis",
+        "dolor de pecho",
+        "dificultad para respirar",
+        "asma",
+        "ataque de asma",
+        "diabetes",
+        "hipoglucemia",
+        "hiperglucemia",
+        "presi[oó]n alta",
+        "crisis hipertensiva",
+        "migra[ñn]a severa",
+        "dolor insoportable",
+        "v[oó]mito constante",
+        "diarrea severa",
+        "deshidrataci[oó]n",
+        "fiebre alta",
+        "temperatura muy alta",
+        "urgencias",
+        "servicio m[eé]dico",
+        "enfermera",
+        "param[ée]dicos",
+        "socorro",
+        "auxilio m[eé]dico",
+        "ayuda m[ée]dica",
+        "atenci[oó]n m[ée]dica urgente"
       ],
       "responses": [
-        "¡Hola! Bienvenido al Hotel Paraíso. ¿Cómo puedo ayudarte hoy?",
-        "¡Buenos días! Es un placer atenderte. ¿En qué te puedo asistir?",
-        "¡Hola! Soy tu asistente virtual del Hotel Paraíso. ¿Qué necesitas saber?",
-        "¡Qué gusto saludarte! Estoy aquí para hacer tu experiencia increíble.",
-        "¡Hola! ¿Listo para descubrir todo lo que tenemos para ti?"
+        "EMERGENCIA MÉDICA - Contactando inmediatamente con servicios médicos.",
+        "Ya alerté a nuestro equipo médico. Una enfermera llegará a tu habitación en 3 minutos.",
+        "Servicios de emergencia en camino.",
+        "Mantente tranquilo. El doctor del hotel está siendo contactado ahora mismo."
       ],
-      "context_set": ["conversacion_iniciada"],
       "followup": {
-        "type": "ask_name"
+        "type": "ask_room_emergency"
+      },
+      "context_set": ["emergencia_activa"]
+    },
+    {
+      "tag": "objetos_perdidos",
+      "patterns": [
+        "olvid[eé]",
+        "perd[ií]",
+        "objetos perdidos",
+        "se me olvid[oó]",
+        "no encuentro",
+        "extravi[eé]",
+        "lost and found",
+        "dej[eé] algo",
+        "se me qued[oó]",
+        "no encuentro mis cosas",
+        "faltan mis pertenencias",
+        "objeto faltante",
+        "art[ií]culo perdido",
+        "valor perdido",
+        "documentos perdidos",
+        "pasaporte perdido",
+        "cartera perdida",
+        "billetera perdida",
+        "tel[ée]fono perdido",
+        "celular perdido",
+        "llaves perdidas",
+        "joyer[ií]a perdida",
+        "reloj perdido",
+        "gafas perdidas",
+        "lentes perdidos",
+        "maleta perdida",
+        "equipaje perdido",
+        "ropa perdida",
+        "zapatos perdidos",
+        "medicamentos perdidos",
+        "reportar p[eé]rdida",
+        "buscar objeto",
+        "recuperar objeto",
+        "encontrar objeto",
+        "alguien encontr[oó]",
+        "hallazgo",
+        "dep[oó]sito de objetos perdidos",
+        "oficina de objetos perdidos"
+      ],
+      "responses": [
+        "Para objetos perdidos, nuestro equipo de limpieza revisa todas las áreas. ¿Qué perdiste exactamente?",
+        "Si olvidaste algo en tu habitación anterior, podemos verificar con housekeeping.",
+        "Tranquilo, te ayudaremos a encontrar lo que necesitas. Se emitió un reporte a objetos perdidos."
+      ],
+      "followup": {
+        "type": "ask_lost_item"
       }
+    },
+    {
+      "tag": "politica_cancelacion",
+      "patterns": [
+        "pol[ií]tica de cancelaci[oó]n",
+        "cancelar reserva",
+        "cancelar",
+        "cancelar reservaci[oó]n",
+        "reembolso",
+        "devoluci[oó]n",
+        "qu[eé] pasa si (cancelo|necesito cancelar) mi reserva",
+        "puedo cancelar mi reserva",
+        "quiero cancelar",
+        "penalizaci[oó]n",
+        "cu[aá]ndo puedo cancelar",
+        "cancelaci[oó]n gratuita"
+      ],
+      "context_set": ["cancelacion_activa"],
+      "followup": {
+        "type": "ask_room_number_cancel"
+      },
+      "responses": [
+        "Política de cancelación:\n• Cancelación gratuita: Hasta 48 horas antes\n• 24-48 horas antes: 50% de penalización\n• Menos de 24 horas: 100% de penalización\n• Temporada alta: Hasta 72 horas antes sin costo",
+        "Para eventos especiales y temporada alta aplican condiciones diferentes. ¿Tu reserva es para qué fechas?",
+        "Recomendamos el seguro de viaje para mayor flexibilidad en cancelaciones."
+      ]
     },
     {
       "tag": "consulta_disponibilidad",
@@ -38,16 +159,34 @@
         "costos",
         "qu[eé] cuesta",
         "reservar",
-        "reserva",
         "hacer reserva",
         "quiero reservar",
-        "reservaci[oó]n"
+        "reservaci[oó]n",
+        "habitacion(es)?",
+        "reservar habitacion(es)?",
+        "quiero una habitaci[oó]n",
+        "necesito cuarto",
+        "busco habitaci[oó]n",
+        "tienen disponibilidad",
+        "hay cuartos",
+        "quiero hospedarme",
+        "me quiero quedar",
+        "estancia",
+        "hospedaje",
+        "alojamiento",
+        "quiero bookear",
+        "hacer booking",
+        "reservaci[oó]n online",
+        "reservar ahora",
+        "cu[aá]nto por noche",
+        "precio por noche",
+        "tarifa nocturna",
+        "coste habitaci[oó]n",
+        "valor habitaci[oó]n"
       ],
       "responses": [
-        "¡Por supuesto! Te ayudo a consultar la disponibilidad.",
-        "Perfecto, revisemos qué opciones tenemos para ti.",
-        "Claro, consultemos las habitaciones disponibles.",
-        "Con mucho gusto te muestro nuestras opciones disponibles."
+        "¡Por supuesto! Te ayudo a consultar la disponibilidad. Actualmente tenemos:\n- Estándar: 5 habitaciones\n- Superior: 3 habitaciones\n- Suite Junior: 2 habitaciones\n- Suite Presidencial: 1 habitación\n¿Deseas reservar alguna?",
+        "Perfecto, revisemos qué opciones tenemos para ti. Por tipo:\n• Estándar: 5\n• Superior: 3\n• Suite Junior: 2\n• Suite Presidencial: 1"
       ],
       "context_set": ["consulta_activa"],
       "followup": {
@@ -55,62 +194,9 @@
       }
     },
     {
-      "tag": "tipos_habitacion",
-      "patterns": [
-        "tipos? de habitaci[oó]n",
-        "tipos de habitaciones",
-        "qu[eé] incluye",
-        "diferencia entre",
-        "fotos de (la )?habitaci[oó]n",
-        "mu[eé]strame",
-        "qu[eé] tipos tienen",
-        "categor[ií]as",
-        "opciones de cuartos",
-        "habitaciones disponibles",
-        "qu[eé] ofrecen"
-      ],
-      "responses": [
-        "Tenemos 4 tipos de habitaciones:\n• Estándar: Cómoda y funcional ($1,200/noche)\n• Superior: Con vista al jardín ($1,800/noche)\n• Suite Junior: Sala separada y jacuzzi ($2,500/noche)\n• Suite Presidencial: Máximo lujo ($4,000/noche)",
-        "Nuestras opciones van desde lo esencial hasta el lujo total. ¿Te interesa alguna categoría específica?",
-        "Cada tipo de habitación está diseñada para diferentes necesidades. ¿Para cuántas personas es la habitación?"
-      ],
-      "followup": {
-        "type": "offer_more_info",
-        "options": [
-          "Amenidades incluidas en cada tipo",
-          "Fotos de las habitaciones",
-          "Servicios exclusivos de suites",
-          "Paquetes familiares"
-        ]
-      }
-    },
-    {
-      "tag": "promociones",
-      "patterns": [
-        "promociones",
-        "ofertas",
-        "descuentos",
-        "paquetes",
-        "especiales",
-        "deals",
-        "rebaja",
-        "oferta especial",
-        "promoción",
-        "paquete rom[aá]ntico",
-        "paquete familiar",
-        "fin de semana"
-      ],
-      "responses": [
-        "¡Tenemos promociones increíbles!\n• 3x2 en habitaciones estándar (lun-jue)\n• 20% descuento en suites (estancia mín. 3 noches)\n• Paquete romántico: Suite + cena + spa ($3,500)\n• Paquete familiar: 2 adultos + 2 niños + actividades ($2,800)",
-        "Nuestras ofertas cambian según la temporada. ¿Te interesa algún paquete específico?",
-        "Tenemos descuentos por reserva anticipada: 15% por reservar con 30 días de anticipación."
-      ]
-    },
-    {
       "tag": "gestion_reserva",
       "patterns": [
         "gestionar",
-        "cancelar",
         "modificar",
         "cambiar (la |mi )?reserva",
         "a[ñn]adir (una )?noche",
@@ -129,20 +215,37 @@
       ]
     },
     {
-      "tag": "horarios_check",
+      "tag": "tipos_habitacion",
       "patterns": [
-        "hora (de )?(check-in|check-out|entrada|salida)",
-        "a qu[eé] hora es",
-        "horario de entrada",
-        "horario de salida",
-        "cu[aá]ndo puedo entrar",
-        "cu[aá]ndo debo salir"
+        "tipos? de habitaci[oó]n",
+        "tipos de habitaciones",
+        "qu[eé] incluye",
+        "diferencia entre",
+        "fotos de (la )?habitaci[oó]n",
+        "mu[eé]strame",
+        "qu[eé] tipos tienen",
+        "categor[ií]as",
+        "opciones de cuartos",
+        "habitaciones",
+        "habitaciones disponibles",
+        "qu[eé] ofrecen",
+        "cuartos",
+        "cuarto",
+        "qu[eé] tiene cada una",
+        "como s[oó]n"
       ],
       "responses": [
-        "Horarios del hotel:\n• Check-in: 15:00 horas (3:00 PM)\n• Check-out: 12:00 horas (12:00 PM)\n• Recepción: 24 horas",
-        "El check-in es a partir de las 3 de la tarde y el check-out hasta el mediodía.",
-        "Puedes registrarte desde las 15:00 y la salida es hasta las 12:00. ¿Necesitas horarios especiales?"
-      ]
+        "Tenemos 4 tipos de habitaciones:\n• Estándar: Cómoda y funcional ($1,200/noche)\n• Superior: Con vista al jardín ($1,800/noche)\n• Suite Junior: Sala separada y jacuzzi ($2,500/noche)\n• Suite Presidencial: Máximo lujo ($4,000/noche)\n Nuestras opciones van desde lo esencial hasta el lujo total. ¿Te interesa alguna categoría específica?"
+      ],
+      "followup": {
+        "type": "offer_more_info",
+        "options": [
+          "Amenidades incluidas en cada tipo",
+          "Fotos de las habitaciones",
+          "Servicios exclusivos de suites",
+          "Paquetes familiares"
+        ]
+      }
     },
     {
       "tag": "early_late_check",
@@ -163,66 +266,96 @@
       ]
     },
     {
-      "tag": "gastronomia",
+      "tag": "horarios_check",
       "patterns": [
-        "restaurante",
-        "desayuno",
-        "men[uú]",
-        "room service",
-        "servicio al cuarto",
-        "bar",
-        "pedir comida",
-        "comida",
-        "cena",
-        "almuerzo",
-        "bebidas",
-        "qu[eé] comer",
-        "horarios restaurante"
+        "hora (de )?(check-in|check-out|entrada|salida)",
+        "horario de entrada",
+        "horario de salida",
+        "horario",
+        "horarios",
+        "a qu[eé] hora es el check-in",
+        "a qu[eé] hora es el check-out",
+        "cu[aá]ndo puedo entrar",
+        "cu[aá]ndo debo salir",
+        "a qu[eé] hora puedo registrarme",
+        "a qu[eé] hora puedo dejar la habitaci[oó]n"
       ],
       "responses": [
-        "Nuestros servicios gastronómicos:\n• Restaurante 'Paraíso': 7:00-23:00\n• Bar 'Sunset': 16:00-2:00\n• Room service: 24 horas\n• Desayuno buffet: 6:00-11:00",
-        "¿Te interesa el menú del restaurante, room service o información sobre el bar?",
-        "Tenemos cocina internacional, especialidades mexicanas y opciones veganas."
+        "Horarios del hotel:\n• Check-in: 15:00 horas (3:00 PM)\n• Check-out: 12:00 horas (12:00 PM)\n• Recepción: 24 horas",
+        "El check-in es a partir de las 3 de la tarde y el check-out hasta las 12 del mediodía.",
+        "Puedes registrarte desde las 15:00 y la salida es hasta las 12:00. ¿Necesitas horarios especiales?"
       ]
     },
     {
-      "tag": "menu_restaurante",
+      "tag": "lavanderia_detalles",
       "patterns": [
-        "men[uú] del restaurante",
-        "qu[eé] comida tienen",
-        "platillos",
-        "especialidades",
-        "comida mexicana",
-        "comida internacional",
-        "opciones vegetarianas",
-        "opciones veganas"
+        "lavander[ií]a",
+        "lavar ropa",
+        "planchar",
+        "limpieza en seco",
+        "servicio de lavado",
+        "cu[aá]nto cuesta lavar",
+        "precios lavander[ií]a"
       ],
       "responses": [
-        "Nuestro menú incluye:\n• Especialidades mexicanas: Mole, cochinita, ceviche\n• Internacional: Pasta, salmón, cortes de carne\n• Vegetariano/Vegano: Quinoa bowl, tacos de verduras\n• Postres: Flan, tiramisú, helados artesanales",
-        "Tenemos opciones para todos los gustos. ¿Alguna preferencia alimentaria específica?",
-        "Nuestro chef ejecutivo prepara platillos con ingredientes locales frescos."
+        "Servicio de lavandería:\n• Lavado y planchado: $50 por prenda\n• Limpieza en seco: $80 por prenda\n• Servicio express (3 horas): +50%\n• Servicio estándar: Entrega en 24 horas",
+        "Recogemos la ropa en tu habitación y la entregamos limpia y planchada. ¿Necesitas servicio express?",
+        "Usamos detergentes ecológicos y el servicio está disponible todos los días."
       ]
     },
     {
-      "tag": "instalaciones",
+      "tag": "transporte_aeropuerto",
       "patterns": [
+        "transporte aeropuerto",
+        "aeropuerto",
+        "transfer",
+        "c[oó]mo llegar del aeropuerto",
+        "shuttle",
+        "recoger en aeropuerto",
+        "taxi aeropuerto"
+      ],
+      "responses": [
+        "Opciones de transporte desde/hacia el aeropuerto:\n• Servicio privado del hotel: $350 (hasta 4 personas)\n• Transfer compartido: $150 por persona\n• Taxi autorizado: $250-300\n• Uber/Taxi app: $200-250",
+        "El tiempo de viaje es aproximadamente 25 minutos. ¿Necesitas que reservemos tu transporte?",
+        "Ofrecemos servicio de recepción en aeropuerto con cartel personalizado."
+      ]
+    },
+    {
+      "tag": "otros_servicios",
+      "patterns": [
+        "estacionamiento",
+        "lavander[ií]a",
+        "transfer",
+        "taxi",
+        "servicios",
+        "wifi",
+        "internet",
+        "caja de seguridad",
+        "servicio de limpieza",
+        "planchado"
+      ],
+      "responses": [
+        "Servicios adicionales:\n• Estacionamiento: Gratuito (200 cajones)\n• Lavandería: 24 horas\n• Transporte aeropuerto: $350 (ida y vuelta $600)\n• WiFi: Gratuito en todas las áreas\n• Caja de seguridad: En cada habitación"
+      ]
+    },
+    {
+      "tag": "servicios_disponibles",
+      "patterns": [
+        "tienen spa",
+        "hay restaurante",
+        "ofrecen gimnasio",
+        "tienen tours",
+        "servicio de transporte",
         "alberca",
-        "gimnasio",
-        "gym",
-        "spa",
-        "reservar (un )?masaje",
-        "horario (de|la|del) (alberca|gym|gimnasio|spa)",
-        "piscina",
-        "jacuzzi",
-        "sauna",
-        "instalaciones",
-        "qu[eé] tienen",
-        "actividades"
+        "room service",
+        "lavander[ií]a",
+        "wifi",
+        "internet"
       ],
       "responses": [
-        "Nuestras instalaciones:\n• Alberca: 8:00-20:00 (climatizada)\n• Gimnasio: 5:00-23:00 (24/7 para huéspedes VIP)\n• Spa: 9:00-21:00\n• Jacuzzi: 8:00-22:00\n• Sauna: 9:00-21:00",
-        "¿Te interesa reservar algún servicio de spa o necesitas más información sobre las instalaciones?",
-        "Todas nuestras instalaciones son de uso gratuito para huéspedes. El spa requiere reservación previa."
+        "Sí, todos estos servicios están disponibles para nuestros huéspedes.",
+        "Claro, contamos con esos servicios. ¿Deseas más detalles sobre alguno en particular?",
+        "Todos nuestros servicios están listos para que disfrutes durante tu estancia."
       ]
     },
     {
@@ -247,7 +380,7 @@
         "Todos nuestros terapistas están certificados. ¿Te gustaría reservar algún tratamiento?"
       ],
       "followup": {
-        "type": "offer_more_info",
+        "type": "offer_more_info_spa",
         "options": [
           "Horarios disponibles para masajes",
           "Paquetes de spa para parejas",
@@ -257,149 +390,142 @@
       }
     },
     {
-      "tag": "otros_servicios",
+      "tag": "instalaciones",
       "patterns": [
-        "estacionamiento",
-        "lavander[ií]a",
-        "transporte al aeropuerto",
-        "transfer",
-        "taxi",
-        "servicios",
-        "wifi",
-        "internet",
-        "caja de seguridad",
-        "servicio de limpieza",
-        "planchado"
+        "alberca",
+        "gimnasio",
+        "gym",
+        "spa",
+        "reservar (un )?masaje",
+        "horario (de|la|del) (alberca|gym|gimnasio|spa)",
+        "piscina",
+        "jacuzzi",
+        "sauna",
+        "instalaciones",
+        "qu[eé] tienen",
+        "actividades"
       ],
       "responses": [
-        "Servicios adicionales:\n• Estacionamiento: Gratuito (200 cajones)\n• Lavandería: 24 horas\n• Transporte aeropuerto: $350 (ida y vuelta $600)\n• WiFi: Gratuito en todas las áreas\n• Caja de seguridad: En cada habitación",
-        "¿Necesitas algún servicio en particular? Todos están disponibles las 24 horas.",
-        "Ofrecemos servicio de transporte a centros comerciales y playas cercanas también."
+        "Nuestras instalaciones:\n• Alberca: 8:00-20:00 (climatizada)\n• Gimnasio: 5:00-23:00 (24/7 para huéspedes VIP)\n• Spa: 9:00-21:00\n• Jacuzzi: 8:00-22:00\n• Sauna: 9:00-21:00",
+        "¿Te interesa reservar algún servicio de spa o necesitas más información sobre las instalaciones?",
+        "Todas nuestras instalaciones son de uso gratuito para huéspedes. El spa requiere reservación previa."
       ]
     },
     {
-      "tag": "lavanderia_detalles",
+      "tag": "gastronomia",
       "patterns": [
-        "lavander[ií]a",
-        "lavar ropa",
-        "planchar",
-        "limpieza en seco",
-        "servicio de lavado",
-        "cu[aá]nto cuesta lavar",
-        "precios lavander[ií]a"
+        "restaurante",
+        "desayuno",
+        "men[uú]",
+        "room service",
+        "servicio al cuarto",
+        "bar",
+        "pedir comida",
+        "comida",
+        "cena",
+        "almuerzo",
+        "bebidas",
+        "qu[eé] comer",
+        "horarios restaurante",
+        "carta", "platillos",
+        "especialidades",
+        "chef",
+        "cocina",
+        "buffet",
+        "desayuno incluido",
+        "comida incluida",
+        "alimentos",
+        "snacks",
+        "bocadillos",
+        "antojos",
+        "hambre",
+        "sed",
+        "quiero comer",
+        "quiero cenar",
+        "quiero desayunar",
+        "quiero almorzar",
+        "ordenar comida",
+        "hacer pedido",
+        "delivery",
+        "a domicilio",
+        "a la habitaci[oó]n",
+        "servicio a cuartos",
+        "men[uú] infantil",
+        "opciones vegetarianas",
+        "comida vegana",
+        "sin gluten",
+        "alergias alimentarias",
+        "dieta especial",
+        "requerimientos diet[ée]ticos",
+        "reservar mesa", "mesa disponible",
+        "capacidad restaurante",
+        "vista restaurante",
+        "terraza restaurante",
+        "ambiente restaurante",
+        "música en vivo",
+        "evento gastron[oó]mico"
       ],
       "responses": [
-        "Servicio de lavandería:\n• Lavado y planchado: $50 por prenda\n• Limpieza en seco: $80 por prenda\n• Servicio express (3 horas): +50%\n• Servicio estándar: Entrega en 24 horas",
-        "Recogemos la ropa en tu habitación y la entregamos limpia y planchada. ¿Necesitas servicio express?",
-        "Usamos detergentes ecológicos y el servicio está disponible todos los días."
+        "Nuestros servicios gastronómicos:\n• Restaurante 'Paraíso': 7:00-23:00\n• Bar 'Sunset': 16:00-2:00\n• Room service: 24 horas\n• Desayuno buffet: 6:00-11:00",
+        "Tenemos cocina internacional, especialidades mexicanas y opciones veganas."
       ]
     },
     {
-      "tag": "problema_habitacion",
+      "tag": "menu_restaurante",
       "patterns": [
-        "problema",
-        "no funciona",
-        "no sirve",
-        "no enfr[ií]a",
-        "no tengo (toallas|agua)",
-        "reporte",
-        "da[ñn]ado",
-        "roto",
-        "falla",
-        "aire acondicionado",
-        "tv no funciona",
-        "agua caliente",
-        "sin luz"
+        "men[uú] del restaurante",
+        "menu",
+        "restaurante",
+        "qu[eé] comida tienen",
+        "platillos",
+        "especialidades",
+        "comida mexicana",
+        "comida internacional",
+        "opciones vegetarianas",
+        "opciones veganas"
       ],
       "responses": [
-        "Lamento el inconveniente. Voy a generar un reporte para mantenimiento inmediatamente.",
-        "Disculpa las molestias. Nuestro personal técnico atenderá tu habitación en los próximos 15 minutos.",
-        "Por supuesto, resolveremos esto de inmediato. ¿Puedes describir exactamente qué no funciona?",
-        "Perfecto, ya registré tu reporte. Mientras tanto, ¿necesitas que te cambien de habitación temporalmente?"
-      ],
-      "context_set": ["problema_reportado"],
-      "followup": {
-        "type": "ask_room_number"
-      }
-    },
-    {
-      "tag": "solicitud_especial",
-      "patterns": [
-        "necesito (una|un) extra",
-        "pueden traerme",
-        "quiero (una|un)",
-        "tienen cunas",
-        "almohadas extra",
-        "toallas adicionales",
-        "blancos",
-        "amenidades",
-        "m[aá]s toallas",
-        "secadora de pelo",
-        "plancha"
-      ],
-      "responses": [
-        "¡Por supuesto! Con gusto te proporcionamos lo que necesites.",
-        "Claro, avisaré al personal para que lleven lo solicitado a tu habitación.",
-        "Sin problema, tu solicitud será atendida en los próximos minutos.",
-        "Perfecto, ¿necesitas algo más además de lo que mencionaste?"
+        "Nuestro menú incluye:\n• Especialidades mexicanas: Mole, cochinita, ceviche\n• Internacional: Pasta, salmón, cortes de carne\n• Vegetariano/Vegano: Quinoa bowl, tacos de verduras\n• Postres: Flan, tiramisú, helados artesanales",
+        "Tenemos opciones para todos los gustos. ¿Alguna preferencia alimentaria específica?",
+        "Nuestro chef ejecutivo prepara platillos con ingredientes locales frescos."
       ]
     },
     {
-      "tag": "ubicacion_contacto",
+      "tag": "eventos_bodas",
       "patterns": [
-        "direcci[oó]n",
-        "d[oó]nde est[aá]n",
-        "ubicaci[oó]n",
-        "mapa",
-        "tel[eé]fono",
-        "contacto",
-        "c[oó]mo llegar",
-        "direcci[oó]n del hotel"
+        "eventos",
+        "bodas",
+        "celebraciones",
+        "sal[oó]n de eventos",
+        "banquetes",
+        "fiestas",
+        "reuni[oó]n",
+        "convenci[oó]n",
+        "conferencias"
       ],
       "responses": [
-        "Ubicación del Hotel Paraíso:\n• Dirección: Av. Costera Miguel Alemán #123, Zona Dorada\n• Teléfono: +52 (744) 555-123-4567\n• Email: info@hotelparaiso.mx\n• A 5 min de la playa y 15 min del aeropuerto",
-        "Estamos ubicados en la mejor zona de la ciudad. ¿Necesitas indicaciones específicas para llegar?",
-        "Te enviamos la ubicación exacta: www.hotelparaiso.mx/ubicacion"
+        "¡Organizamos eventos inolvidables!\n• Salón de eventos: Capacidad 300 personas\n• Bodas en playa: Paquetes desde $15,000\n• Reuniones empresariales: Equipo audiovisual incluido\n• Catering personalizado disponible",
+        "Nuestro coordinador de eventos puede ayudarte a planear cualquier celebración especial.",
+        "¿Qué tipo de evento estás planeando? Tenemos paquetes para cada ocasión."
       ]
     },
     {
-      "tag": "pagos_politicas",
+      "tag": "niños_familias",
       "patterns": [
-        "aceptan (tarjeta|amex|american express)",
-        "pagar en efectivo",
-        "pol[ií]tica de mascotas",
-        "pet-friendly",
-        "accesible",
-        "formas de pago",
-        "paypal",
-        "transferencia",
-        "pol[ií]ticas",
-        "cancelar",
-        "cancelaci[oó]n",
-        "reembolso"
+        "ni[ñn]os",
+        "beb[eé]s",
+        "familia",
+        "actividades para ni[ñn]os",
+        "cuna",
+        "silla alta",
+        "kids club",
+        "entretenimiento infantil",
+        "paquete familiar"
       ],
       "responses": [
-        "Formas de pago aceptadas:\n• Todas las tarjetas principales (Visa, MC, Amex)\n• Efectivo (pesos mexicanos y USD)\n• Transferencias bancarias\n• PayPal para reservas online",
-        "Somos 100% pet-friendly. Mascotas bienvenidas sin costo extra (máx. 2 por habitación).",
-        "Nuestro hotel es completamente accesible y cumple con todas las normas de accesibilidad."
-      ]
-    },
-    {
-      "tag": "politica_cancelacion",
-      "patterns": [
-        "pol[ií]tica de cancelaci[oó]n",
-        "cancelar reserva",
-        "reembolso",
-        "devoluci[oó]n",
-        "qu[eé] pasa si cancelo",
-        "penalizaci[oó]n",
-        "cu[aá]ndo puedo cancelar",
-        "cancelaci[oó]n gratuita"
-      ],
-      "responses": [
-        "Política de cancelación:\n• Cancelación gratuita: Hasta 48 horas antes\n• 24-48 horas antes: 50% de penalización\n• Menos de 24 horas: 100% de penalización\n• Temporada alta: Hasta 72 horas antes sin costo",
-        "Para eventos especiales y temporada alta aplican condiciones diferentes. ¿Tu reserva es para qué fechas?",
-        "Recomendamos el seguro de viaje para mayor flexibilidad en cancelaciones."
+        "¡Somos muy family-friendly!\n• Kids Club: 9:00-18:00 (ages 4-12)\n• Cunas y sillas altas sin costo\n• Menú infantil en restaurante\n• Área de juegos en alberca\n• Descuentos para niños",
+        "Los menores de 6 años se hospedan gratis con sus padres.",
+        "Tenemos animadores especializados y actividades diarias para los pequeños."
       ]
     },
     {
@@ -408,6 +534,7 @@
         "recomi(e|é)nda(me)?",
         "qu[eé] hacer",
         "lugares tur[ií]sticos",
+        "lugares tur[ií]sticos cerca",
         "cerca de aqu[ií]",
         "museo",
         "playa",
@@ -415,7 +542,81 @@
         "tours",
         "excursiones",
         "qu[eé] visitar",
-        "atracciones"
+        "atracciones",
+        "dónde puedo ir",
+        "qué lugares visitar",
+        "qué hacer cerca",
+        "actividades cercanas",
+        "puntos de inter[eé]s",
+        "sitios interesantes",
+        "monumentos",
+        "iglesias",
+        "templos",
+        "plazas",
+        "mercados",
+        "centros comerciales",
+        "mall",
+        "tiendas",
+        "compras",
+        "artesan[ií]as",
+        "galer[ií]as de arte",
+        "teatros",
+        "cines",
+        "conciertos",
+        "eventos",
+        "festivales",
+        "ferias",
+        "parques",
+        "jardines",
+        "reservas naturales",
+        "áreas protegidas",
+        "senderismo",
+        "hiking",
+        "cicloturismo",
+        "bicicleta",
+        "deportes acu[áa]ticos",
+        "surf",
+        "snorkel",
+        "buceo",
+        "pesca",
+        "paseos en barco",
+        "yates",
+        "catamaranes",
+        "observaci[oó]n de ballenas",
+        "avistamiento de delfines",
+        "paseos ecotur[ií]sticos",
+        "aventura",
+        "zip line",
+        "tirolesa",
+        "rappeling",
+        "escalada",
+        "monta[ñn]a",
+        "volcanes",
+        "aguas termales",
+        "balnearios",
+        "spas naturales",
+        "ruinas arqueol[oó]gicas",
+        "sitios hist[oó]ricos",
+        "cascadas",
+        "r[ií]os",
+        "lagos",
+        "lagunas",
+        "islas cercanas",
+        "playas vírgenes",
+        "calas",
+        "bah[ií]as",
+        "miradores",
+        "vistas panorámicas",
+        "atardeceres",
+        "amaneceres",
+        "fotograf[ií]a",
+        "fotos panorámicas",
+        "recorridos guiados",
+        "gu[ií]as tur[ií]sticos",
+        "transportaci[oó]n tur[ií]stica",
+        "renta de autos",
+        "taxi tur[ií]stico",
+        "uber tur[ií]stico"
       ],
       "responses": [
         "Lugares imperdibles cerca del hotel:\n• Playa Dorada (5 min caminando)\n• Centro Histórico (10 min en auto)\n• Museo de Arte Regional (15 min)\n• Mercado de Artesanías (8 min)\n• Malecón y zona gastronómica (7 min)",
@@ -442,6 +643,156 @@
       ]
     },
     {
+      "tag": "problema_habitacion",
+      "patterns": [
+        "problema",
+        "no funciona",
+        "no sirve",
+        "no enfr[ií]a",
+        "no tengo (toallas|agua)",
+        "reporte",
+        "da[ñn]ado",
+        "roto",
+        "falla",
+        "aire acondicionado",
+        "tv no funciona",
+        "agua caliente",
+        "sin luz",
+        "ayuda",
+        "ayuda con",
+        "necesito ayuda con",
+        "tengo un problema",
+        "mi habitaci[oó]n tiene",
+        "el cuarto tiene",
+        "hay un problema",
+        "fuga de agua",
+        "inundaci[oó]n",
+        "agua filtrando",
+        "gotera",
+        "llave goteando",
+        "ba[ñn]o inundado",
+        "tuber[ií]a rota",
+        "escape de agua",
+        "humedad",
+        "manchas de agua",
+        "techos goteando",
+        "inodoro tapado",
+        "inodoro desbordando",
+        "ducha no sirve",
+        "agua no caliente",
+        "agua muy caliente",
+        "presi[oó]n del agua baja",
+        "drenaje lento",
+        "fregadero tapado",
+        "agua sucia",
+        "agua con mal olor",
+        "reportar problema",
+        "necesito mantenimiento",
+        "algo no funciona",
+        "da[ñn]o en la habitaci[oó]n",
+        "aver[ií]a en la habitaci[oó]n",
+        "defecto en la habitaci[oó]n",
+        "falla en el cuarto",
+        "reparaci[oó]n necesaria",
+        "asistencia t[ée]cnica",
+        "no hay luz",
+        "apag[oó]n",
+        "foco fundido",
+        "l[áa]mpara no prende",
+        "enchufe no funciona",
+        "contacto el[ée]ctrico malo",
+        "corto circuito",
+        "interruptor roto",
+        "luces parpadeando",
+        "cableado suelto",
+        "tomacorriente suelto",
+        "no carga el celular",
+        "problema con el cargador"
+      ],
+      "responses": [
+        "Lamento el inconveniente. Voy a generar un reporte para mantenimiento inmediatamente.",
+        "Disculpa las molestias. Nuestro personal técnico atenderá tu habitación en los próximos 15 minutos.",
+        "Por supuesto, resolveremos esto de inmediato. ¿Puedes describir exactamente qué no funciona?",
+        "Perfecto, ya registré tu reporte. Mientras tanto, ¿necesitas que te cambien de habitación temporalmente?"
+      ],
+      "context_set": ["problema_reportado"],
+      "followup": {
+        "type": "ask_room_number"
+      }
+    },
+    {
+      "tag": "asistencia_general",
+      "patterns": [
+        "asistencia",
+        "soporte",
+        "ayuda general",
+        "necesito ayuda",
+        "puedes ayudarme",
+        "requiero asistencia",
+        "apoyo",
+        "auxilio",
+        "emergencia"
+      ],
+      "responses": [
+        "¡Claro! Estoy aquí para ayudarte. ¿Qué tipo de asistencia necesitas?",
+        "Por supuesto, dime en qué puedo asistirte.",
+        "Estoy a tu disposición. ¿En qué necesitas ayuda específicamente?",
+        "Cuéntame qué problema tienes y te ayudaré a resolverlo."
+      ]
+    },
+    {
+      "tag": "solicitud_especial",
+      "patterns": [
+        "necesito (una|un) extra",
+        "pueden traerme",
+        "quiero (una|un)",
+        "tienen cunas",
+        "almohadas extra",
+        "toallas adicionales",
+        "blancos",
+        "amenidades",
+        "m[aá]s toallas",
+        "secadora de pelo",
+        "plancha",
+        "necesito adicional",
+        "requiero extra",
+        "podr[ií]an proporcionar",
+        "solicito",
+        "me hace falta",
+        "faltante de",
+        "carezco de",
+        "podr[ií]an traer",
+        "env[ií]enme",
+        "mandenme",
+        "llevenme",
+        "hagan el favor de traer",
+        "requerimiento especial",
+        "pedido especial",
+        "solicitud particular",
+        "necesidad espec[ií]fica",
+        "preferencia personal",
+        "acomodaci[oó]n especial",
+        "adaptaci[oó]n",
+        "modificaci[oó]n",
+        "cambio solicitado",
+        "ajuste requerido",
+        "personalizaci[oó]n",
+        "servicio personalizado",
+        "atenci[oó]n personalizada",
+        "trato especial",
+        "consideraci[oó]n especial",
+        "excepci[oó]n",
+        "permiso especial",
+        "autorizaci[oó]n especial"
+      ],
+      "responses": [
+        "¡Por supuesto! Con gusto te proporcionamos lo que necesites.",
+        "Claro, avisaré al personal para que lleven lo solicitado a tu habitación.",
+        "Sin problema, tu solicitud será atendida en los próximos minutos.",
+        "Perfecto, ¿necesitas algo más además de lo que mencionaste?"
+      ]
+    },
+    {
       "tag": "queja",
       "patterns": [
         "queja",
@@ -463,48 +814,199 @@
       ]
     },
     {
-      "tag": "emergencia_objetos_perdidos",
+      "tag": "informacion_general",
       "patterns": [
-        "emergencia",
-        "necesito un m[eé]dico",
-        "olvid[eé]",
-        "perd[ií]",
-        "objetos perdidos",
-        "se me olvid[oó]",
-        "no encuentro",
-        "extravi[eé]",
-        "lost and found"
+        "d[oó]nde est[aá]n",
+        "direcci[oó]n",
+        "ubicaci[oó]n",
+        "info",
+        "informaci[oó]n",
+        "mapa",
+        "tel[eé]fono",
+        "contacto",
+        "check in",
+        "check out",
+        "horarios",
+        "formas de pago",
+        "pagos",
+        "pol[ií]ticas"
       ],
       "responses": [
-        "Si es una emergencia médica, contactaré inmediatamente con servicios médicos.",
-        "Para objetos perdidos, nuestro equipo de limpieza revisa todas las áreas. ¿Qué perdiste exactamente?",
-        "Si olvidaste algo en tu habitación anterior, podemos verificar con housekeeping.",
-        "Tranquilo, te ayudo a encontrar lo que necesitas. ¿Puedes darme más detalles?"
-      ],
-      "followup": {
-        "type": "ask_lost_item"
-      }
+        "El Hotel Paraíso está en Av. Costera Miguel Alemán #123, Zona Dorada. Tel: +52 (744) 555-123-4567. Email: info@hotelparaiso.mx\nCheck-in: 15:00, Check-out: 12:00. Recepción 24 horas.\nAceptamos tarjetas principales, efectivo, transferencias y PayPal. Somos 100% pet-friendly y accesibles."
+      ]
     },
     {
-      "tag": "emergencia_medica",
+      "tag": "seguridad",
       "patterns": [
-        "emergencia m[eé]dica",
-        "necesito un doctor",
-        "me siento mal",
-        "accidente",
-        "lastimado",
-        "herido",
-        "ambulancia",
-        "primeros auxilios",
-        "urgencia m[eé]dica"
+        "seguridad",
+        "seguro",
+        "c[aá]maras",
+        "vigilancia",
+        "caja fuerte",
+        "robo",
+        "perdida",
+        "guardia"
       ],
       "responses": [
-        "EMERGENCIA MÉDICA - Contactando inmediatamente con servicios médicos.",
-        "Ya alerté a nuestro equipo médico. Una enfermera llegará a tu habitación en 3 minutos.",
-        "Servicios de emergencia en camino. ¿Necesitas que contacte a algún familiar?",
-        "Mantente tranquilo. El doctor del hotel está siendo contactado ahora mismo."
+        "Tu seguridad es nuestra prioridad:\n• Vigilancia 24/7\n• Cámaras in circuito cerrado\n• Personal de seguridad capacitado\n• Cajas fuertes en habitaciones\n• Acceso con tarjeta magnética",
+        "El hotel cuenta con todas las certificaciones de seguridad requeridas.",
+        "Si tienes alguna inquietud de seguridad, reporta inmediatamente en recepción."
+      ]
+    },
+    {
+      "tag": "accesibilidad",
+      "patterns": [
+        "accesible",
+        "accesibilidad",
+        "silla de ruedas",
+        "discapacidad",
+        "movilidad reducida",
+        "ascensor",
+        "rampa",
+        "ba[ñn]o adaptado"
       ],
-      "context_set": ["emergencia_activa"]
+      "responses": [
+        "Hotel 100% accesible:\n• Habitaciones adaptadas disponibles\n• Ascensores en todas las áreas\n• Rampas y pasillos amplios\n• Baños adaptados\n• Personal entrenado en asistencia",
+        "Cumplimos con todas las normas internacionales de accesibilidad.",
+        "¿Necesitas alguna adaptación específica para tu estadía? Podemos preparar todo con anticipación."
+      ]
+    },
+    {
+      "tag": "promociones",
+      "patterns": [
+        "promociones",
+        "ofertas",
+        "descuentos",
+        "paquetes",
+        "especiales",
+        "deals",
+        "rebaja",
+        "oferta especial",
+        "promoción",
+        "paquete rom[aá]ntico",
+        "paquete familiar",
+        "fin de semana"
+      ],
+      "responses": [
+        "¡Tenemos promociones increíbles!\n• 3x2 en habitaciones estándar (lun-jue)\n• 20% descuento en suites (estancia mín. 3 noches)\n• Paquete romántico: Suite + cena + spa ($3,500)\n• Paquete familiar: 2 adultos + 2 niños + actividades ($2,800)",
+        "Nuestras ofertas cambian según la temporada. ¿Te interesa algún paquete específico?",
+        "Tenemos descuentos por reserva anticipada: 15% por reservar con 30 días de anticipación."
+      ]
+    },
+    {
+      "tag": "informacion_general",
+      "patterns": [
+        "d[oó]nde est[aá]n",
+        "direcci[oó]n",
+        "ubicaci[oó]n",
+        "mapa",
+        "tel[eé]fono",
+        "contacto",
+        "check in",
+        "check out",
+        "horarios",
+        "formas de pago",
+        "pagos",
+        "pol[ií]ticas"
+      ],
+      "responses": [
+        "El Hotel Paraíso está en Av. Costera Miguel Alemán #123, Zona Dorada. Tel: +52 (744) 555-123-4567. Email: info@hotelparaiso.mx",
+        "Check-in: 15:00, Check-out: 12:00. Recepción 24 horas.",
+        "Aceptamos tarjetas principales, efectivo, transferencias y PayPal. Somos 100% pet-friendly y accesibles."
+      ]
+    },
+    {
+      "tag": "clima_tiempo",
+      "patterns": [
+        "clima",
+        "tiempo",
+        "temperatura",
+        "va a llover",
+        "hace calor",
+        "hace fr[ií]o",
+        "qu[eé] tiempo hace",
+        "pron[oó]stico"
+      ],
+      "responses": [
+        "El clima hoy está perfecto para disfrutar todas nuestras instalaciones.",
+        "Te recomiendo consultar el pronóstico local, pero generalmente tenemos un clima cálido y agradable.",
+        "¿Planeas actividades al aire libre? Puedo recomendarte según las condiciones actuales. "
+      ]
+    },
+    {
+      "tag": "wifi_internet",
+      "patterns": [
+        "wifi",
+        "wi fi",
+        "internet",
+        "contrase[ñn]a wifi",
+        "password wifi",
+        "red",
+        "conexi[oó]n",
+        "no hay internet",
+        "wifi lento"
+      ],
+      "responses": [
+        "WiFi gratuito disponible en todo el hotel:\n• Red: Hotel_Paraiso_Guest\n• Contraseña: Paraiso2024!\n• Velocidad: 100 Mbps",
+        "Si tienes problemas con la conexión, puedo reportarlo al equipo técnico inmediatamente.",
+        "También tenemos WiFi premium de alta velocidad por $100/día para huéspedes con necesidades especiales."
+      ]
+    },
+    {
+      "tag": "ubicacion_contacto",
+      "patterns": [
+        "direcci[oó]n",
+        "d[oó]nde est[aá]n",
+        "ubicaci[oó]n",
+        "mapa",
+        "tel[eé]fono",
+        "contacto",
+        "c[oó]mo llegar",
+        "direcci[oó]n del hotel"
+      ],
+      "responses": [
+        "Ubicación del Hotel Paraíso:\n• Dirección: Av. Costera Miguel Alemán #123, Zona Dorada\n• Teléfono: +52 (744) 555-123-4567\n• Email: info@hotelparaiso.mx\n• A 5 min de la playa y 15 min del aeropuerto",
+        "Estamos ubicados en la mejor zona de la ciudad. ¿Necesitas indicaciones específicas para llegar?",
+        "Te enviamos la ubicación exacta: www.hotelparaiso.mx/ubicacion"
+      ]
+    },
+    {
+      "tag": "horarios_instalaciones",
+      "patterns": [
+        "horarios",
+        "qu[eé] hora abre",
+        "qu[eé] hora cierra",
+        "hasta qu[eé] hora",
+        "cu[aá]ndo est[aá] abierto",
+        "horario de atenci[oó]n"
+      ],
+      "responses": [
+        "Horarios generales:\n• Recepción: 24 horas\n• Restaurante: 7:00-23:00\n• Bar: 16:00-2:00\n• Alberca: 8:00-20:00\n• Gimnasio: 5:00-23:00\n• Spa: 9:00-21:00",
+        "¿Necesitas el horario de algún servicio en particular?",
+        "La mayoría de nuestros servicios tienen horarios extendidos para tu comodidad."
+      ]
+    },
+    {
+      "tag": "pagos_politicas",
+      "patterns": [
+        "aceptan (tarjeta|amex|american express)",
+        "pagar en efectivo",
+        "pol[ií]tica de mascotas",
+        "pet-friendly",
+        "accesible",
+        "formas de pago",
+        "paypal",
+        "transferencia",
+        "pol[ií]ticas",
+        "cancelar",
+        "cancelaci[oó]n",
+        "reembolso"
+      ],
+      "responses": [
+        "Formas de pago aceptadas:\n• Todas las tarjetas principales (Visa, MC, Amex)\n• Efectivo (pesos mexicanos y USD)\n• Transferencias bancarias\n• PayPal para reservas online",
+        "Somos 100% pet-friendly. Mascotas bienvenidas sin costo extra (máx. 2 por habitación).",
+        "Nuestro hotel es completamente accesible y cumple con todas las normas de accesibilidad."
+      ]
     },
     {
       "tag": "afirmacion",
@@ -571,146 +1073,73 @@
       ]
     },
     {
-      "tag": "horarios_instalaciones",
-      "patterns": [
-        "horarios",
-        "qu[eé] hora abre",
-        "qu[eé] hora cierra",
-        "hasta qu[eé] hora",
-        "cu[aá]ndo est[aá] abierto",
-        "horario de atenci[oó]n"
-      ],
-      "responses": [
-        "Horarios generales:\n• Recepción: 24 horas\n• Restaurante: 7:00-23:00\n• Bar: 16:00-2:00\n• Alberca: 8:00-20:00\n• Gimnasio: 5:00-23:00\n• Spa: 9:00-21:00",
-        "¿Necesitas el horario de algún servicio en particular?",
-        "La mayoría de nuestros servicios tienen horarios extendidos para tu comodidad."
-      ]
-    },
-    {
-      "tag": "clima_tiempo",
-      "patterns": [
-        "clima",
-        "tiempo",
-        "temperatura",
-        "va a llover",
-        "hace calor",
-        "hace fr[ií]o",
-        "qu[eé] tiempo hace",
-        "pron[oó]stico"
-      ],
-      "responses": [
-        "El clima hoy está perfecto para disfrutar todas nuestras instalaciones.",
-        "Te recomiendo consultar el pronóstico local, pero generalmente tenemos un clima cálido y agradable.",
-        "¿Planeas actividades al aire libre? Puedo recomendarte según las condiciones actuales. "
-      ]
-    },
-    {
-      "tag": "wifi_internet",
+      "tag": "faq_amplio",
       "patterns": [
         "wifi",
         "internet",
-        "contrase[ñn]a wifi",
-        "password wifi",
-        "red",
-        "conexi[oó]n",
-        "no hay internet",
-        "wifi lento"
-      ],
-      "responses": [
-        "WiFi gratuito disponible en todo el hotel:\n• Red: Hotel_Paraiso_Guest\n• Contraseña: Paraiso2024!\n• Velocidad: 100 Mbps",
-        "Si tienes problemas con la conexión, puedo reportarlo al equipo técnico inmediatamente.",
-        "También tenemos WiFi premium de alta velocidad por $100/día para huéspedes con necesidades especiales."
-      ]
-    },
-    {
-      "tag": "niños_familias",
-      "patterns": [
+        "clima",
+        "temperatura",
         "ni[ñn]os",
-        "beb[eé]s",
         "familia",
-        "actividades para ni[ñn]os",
-        "cuna",
-        "silla alta",
-        "kids club",
-        "entretenimiento infantil",
-        "paquete familiar"
-      ],
-      "responses": [
-        "¡Somos muy family-friendly!\n• Kids Club: 9:00-18:00 (ages 4-12)\n• Cunas y sillas altas sin costo\n• Menú infantil en restaurante\n• Área de juegos en alberca\n• Descuentos para niños",
-        "Los menores de 6 años se hospedan gratis con sus padres.",
-        "Tenemos animadores especializados y actividades diarias para los pequeños."
-      ]
-    },
-    {
-      "tag": "eventos_bodas",
-      "patterns": [
-        "eventos",
-        "bodas",
-        "celebraciones",
-        "sal[oó]n de eventos",
-        "banquetes",
-        "fiestas",
-        "reuni[oó]n",
-        "convenci[oó]n",
-        "conferencias"
-      ],
-      "responses": [
-        "¡Organizamos eventos inolvidables!\n• Salón de eventos: Capacidad 300 personas\n• Bodas en playa: Paquetes desde $15,000\n• Reuniones empresariales: Equipo audiovisual incluido\n• Catering personalizado disponible",
-        "Nuestro coordinador de eventos puede ayudarte a planear cualquier celebración especial.",
-        "¿Qué tipo de evento estás planeando? Tenemos paquetes para cada ocasión."
-      ]
-    },
-    {
-      "tag": "transporte_aeropuerto",
-      "patterns": [
-        "transporte aeropuerto",
-        "transfer",
-        "c[oó]mo llegar del aeropuerto",
-        "shuttle",
-        "recoger en aeropuerto",
-        "taxi aeropuerto"
-      ],
-      "responses": [
-        "Opciones de transporte desde/hacia el aeropuerto:\n• Servicio privado del hotel: $350 (hasta 4 personas)\n• Transfer compartido: $150 por persona\n• Taxi autorizado: $250-300\n• Uber/Taxi app: $200-250",
-        "El tiempo de viaje es aproximadamente 25 minutos. ¿Necesitas que reservemos tu transporte?",
-        "Ofrecemos servicio de recepción en aeropuerto con cartel personalizado."
-      ]
-    },
-    {
-      "tag": "seguridad",
-      "patterns": [
         "seguridad",
-        "seguro",
-        "c[aá]maras",
-        "vigilancia",
-        "caja fuerte",
-        "robo",
-        "perdida",
-        "guardia"
+        "accesibilidad",
+        "horarios",
+        "servicios"
       ],
       "responses": [
-        "Tu seguridad es nuestra prioridad:\n• Vigilancia 24/7\n• Cámaras in circuito cerrado\n• Personal de seguridad capacitado\n• Cajas fuertes en habitaciones\n• Acceso con tarjeta magnética",
-        "El hotel cuenta con todas las certificaciones de seguridad requeridas.",
-        "Si tienes alguna inquietud de seguridad, reporta inmediatamente en recepción."
+        "WiFi gratuito en todo el hotel. Red: Hotel_Paraiso_Guest, Contraseña: Paraiso2024!",
+        "El clima suele ser cálido y agradable. Consulta pronóstico local para detalles.",
+        "Somos family-friendly con Kids Club, menú infantil, cunas y actividades para niños.",
+        "Seguridad 24/7 con personal capacitado y cámaras de vigilancia. Cajas fuertes en habitaciones.",
+        "Hotel 100% accesible: rampas, baños adaptados y personal entrenado.",
+        "Nuestros servicios tienen horarios extendidos para tu comodidad."
       ]
     },
     {
-      "tag": "accesibilidad",
+      "tag": "saludo",
       "patterns": [
-        "accesible",
-        "accesibilidad",
-        "silla de ruedas",
-        "discapacidad",
-        "movilidad reducida",
-        "ascensor",
-        "rampa",
-        "ba[ñn]o adaptado"
+        "hola",
+        "buenos d[ií]as",
+        "buenas tardes",
+        "buenas noches",
+        "saludos",
+        "qu[eé] tal",
+        "c[oó]mo est[aá]s",
+        "hey",
+        "holi",
+        "qu[eé] onda",
+        "buen d[ií]a",
+        "buena tarde",
+        "buena noche",
+        "c[oó]mo te va",
+        "qu[eé] hubo",
+        "quihubo",
+        "saludo",
+        "presente",
+        "aqu[ií] estoy",
+        "estoy aqu[ií]",
+        "empezar",
+        "iniciar",
+        "buenas",
+        "comenzar",
+        "atiendes",
+        "hay alguien",
+        "aló",
+        "hola bot",
+        "hola asistente",
+        "hola hotel"
       ],
       "responses": [
-        "Hotel 100% accesible:\n• Habitaciones adaptadas disponibles\n• Ascensores en todas las áreas\n• Rampas y pasillos amplios\n• Baños adaptados\n• Personal entrenado en asistencia",
-        "Cumplimos con todas las normas internacionales de accesibilidad.",
-        "¿Necesitas alguna adaptación específica para tu estadía? Podemos preparar todo con anticipación."
-      ]
+        "¡Hola! Bienvenido al Hotel Paraíso. ¿Cómo puedo ayudarte hoy?",
+        "¡Buenos días! Es un placer atenderte. ¿En qué te puedo asistir?",
+        "¡Hola! Soy tu asistente virtual del Hotel Paraíso. ¿Qué necesitas saber?",
+        "¡Qué gusto saludarte! Estoy aquí para hacer tu experiencia increíble.",
+        "¡Hola! ¿Listo para descubrir todo lo que tenemos para ti?"
+      ],
+      "context_set": ["conversacion_iniciada"],
+      "followup": {
+        "type": "ask_name"
+      }
     }
   ]
 }
